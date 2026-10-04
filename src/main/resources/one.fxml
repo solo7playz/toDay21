@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.DemoApplication"
+      spacing="16"
+      styleClass="root"
+      stylesheets="@dark-theme.css">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20"/>
+    </padding>
+
+    <!-- Title -->
+    <Label text="📋 Task Manager" styleClass="h1"/>
+
+    <SplitPane dividerPositions="0.4">
+        <items>
+            <!-- Left panel: Add task form -->
+            <VBox spacing="12" styleClass="group">
+                <padding>
+                    <Insets right="10"/>
+                </padding>
+
+                <Label text="Добавить задачу" styleClass="h1" VBox.vgrow="NEVER"/>
+
+                <VBox spacing="10">
+                    <Label text="Название задачи"/>
+                    <TextField fx:id="nameField" promptText="Введите название задачи"/>
+
+                    <Label text="Краткое описание"/>
+                    <TextField fx:id="infoField" promptText="Введите описание задачи"/>
+
+                    <Label text="Статус"/>
+                    <HBox spacing="10">
+                        <children>
+                            <ToggleButton fx:id="notDoneBtn" text="✗ Не выполнено" styleClass="toggle-button"
+                                          selected="true" onAction="#onStatusChanged" HBox.hgrow="ALWAYS"/>
+                            <ToggleButton fx:id="doneBtn" text="✓ Выполнено" styleClass="toggle-button"
+                                          onAction="#onStatusChanged" HBox.hgrow="ALWAYS"/>
+                        </children>
+                    </HBox>
+
+                    <Button text="➕ Добавить задачу" onAction="#onAddTask" styleClass="button"
+                            VBox.vgrow="NEVER"/>
+                </VBox>
+            </VBox>
+
+            <!-- Right panel: Task list -->
+            <VBox spacing="12" HBox.hgrow="ALWAYS" styleClass="group">
+                <padding>
+                    <Insets left="10"/>
+                </padding>
+
+                <Label text="Список задач" styleClass="h1"/>
+
+                <ListView fx:id="taskListView" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </items>
+    </SplitPane>
+</VBox>
